@@ -13,7 +13,7 @@ services:
      DbServer: "sqlserver" 
      DbPort: "1433"
      DbUser: "SA"
-     Password: "12345"
+     Password: ""
      Database: "Quartz"
    ports:
     - "8089:80"
