@@ -7,9 +7,8 @@ namespace QuartzTest.Jobs
     {
         public async Task Execute(IJobExecutionContext context)
         {
-            var myObj = context.JobDetail.JobDataMap["context"] as Context;
 
-            Console.WriteLine($"{GetType().Name} Execution {myObj.Date} - {myObj.Name}");
+            Console.WriteLine($"{GetType().Name} Execution {DateTime.Now}");
         }
     }
 }

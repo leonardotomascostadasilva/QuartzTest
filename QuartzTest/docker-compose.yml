@@ -1,17 +1,19 @@
-version: '3.3'
 services:
-  database:
-    image: mysql:5.7
-    container_name: mysql
-    restart: always
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
     environment:
-      MYSQL_DATABASE: 'db'   
-      MYSQL_USER: 'user'
-      MYSQL_PASSWORD: 'password'      
-      MYSQL_ROOT_PASSWORD: 'password'
+      SA_PASSWORD: "SqlServer2019!"
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Developer"
     ports:
-      - '3306:3306'
-    expose:
-      - '3306'
-    volumes:
-      - './.mysql-data/db:/var/lib/mysql'
+      - "1433:1433"
+  quartz:
+   build: .
+   environment:
+     DbServer: "sqlserver" 
+     DbPort: "1433"
+     DbUser: "SA"
+     Password: "12345"
+     Database: "Quartz"
+   ports:
+    - "8089:80"

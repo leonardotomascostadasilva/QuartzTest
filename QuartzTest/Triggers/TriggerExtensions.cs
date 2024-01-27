@@ -6,18 +6,16 @@ namespace QuartzTest.Triggers
 {
     public static class TriggerExtensions
     {
-        public static async Task AddTriggerJob<TJob>(this IScheduler scheduler, Context context) where TJob : IJob
+        public static async Task AddTriggerJob<TJob>(this IScheduler scheduler, JobContext context) where TJob : IJob
         {
             // define the job and tie it to our Job1 class
             var job = JobBuilder.Create<TJob>()
-                .WithIdentity(typeof(TJob).Name, $"group-{Guid.NewGuid()}")
+                .WithIdentity(typeof(TJob).Name, $"group{Guid.NewGuid()}")
                 .Build();
-
-            job.JobDataMap["context"] = context;
 
             // Trigger the job to run now, and then repeat every 10 seconds
             var trigger = TriggerBuilder.Create()
-                .WithIdentity($"trigger-{Guid.NewGuid()}", $"group-{Guid.NewGuid()}")
+                .WithIdentity($"trigger{Guid.NewGuid()}", $"group{Guid.NewGuid()}")
                 .StartNow()
                 //.WithCronSchedule("0 0/1 * * * ?")
                 .WithSimpleSchedule(x => x

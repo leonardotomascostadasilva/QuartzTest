@@ -1,7 +1,7 @@
 ﻿using Quartz.Logging;
 using LogLevel = Microsoft.Extensions.Logging.LogLevel;
 
-namespace QuartzTest
+namespace QuartzTest.Providers
 {
     public class ConsoleLogProvider : ILoggerProvider, ILogProvider
     {

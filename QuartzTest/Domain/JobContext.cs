@@ -1,6 +1,6 @@
 ﻿namespace QuartzTest.Domain
 {
-    public class Context
+    public class JobContext
     {
         public string Name { get; set; }
         public DateTime Date => DateTime.Now;
